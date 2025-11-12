@@ -1,3 +1,4 @@
+import Categories from "@/components/Categories/Categories";
 import { theme } from "@/constants/theme";
 import { hp, wp } from "@/helpers/common";
 import { Feather, FontAwesome6, Ionicons } from "@expo/vector-icons";
@@ -65,6 +66,9 @@ const HomeScreen = () => {
             </Pressable>
           )}
         </View>
+        <View style={style.categories}>
+          <Categories />
+        </View>
       </ScrollView>
     </View>
   );
@@ -116,5 +120,12 @@ const style = StyleSheet.create({
     backgroundColor: theme.colors.neutral(0.1),
     padding: 8,
     borderRadius: theme.radius.xs,
+  },
+
+  categories: {
+    display: "flex",
+    width: wp(100),
+    flex: 1,
+    marginHorizontal: wp(4),
   },
 });

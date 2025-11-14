@@ -46,6 +46,10 @@ const HomeScreen = () => {
     fetchImages();
   }, []);
 
+  const handleSearch = (text: string) => {
+    console.log("Search For ", text);
+  };
+
   return (
     <View style={(style.container, { paddingTop })}>
       <StatusBar style="dark" />

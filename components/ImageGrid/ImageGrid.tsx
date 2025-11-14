@@ -1,4 +1,4 @@
-import { getColumnCount, wp } from "@/helpers/common";
+import { getColumnCount } from "@/helpers/common";
 import { FlashList } from "@shopify/flash-list";
 import React from "react";
 import { StyleSheet, View } from "react-native";
@@ -14,10 +14,13 @@ const ImageGrid = ({ images }: { images: any }) => {
       }}
     >
       <FlashList
-        style={style.ImagesContainer}
+        // style={style.ImagesContainer}
+        contentContainerStyle={style.ImagesContainer}
         numColumns={colums}
         masonry
         data={images}
+        scrollToOverflowEnabled={true}
+        scrollEnabled
         renderItem={({ index, item }) => {
           return <ImageCard image={item} />;
         }}
@@ -30,10 +33,8 @@ export default ImageGrid;
 
 const style = StyleSheet.create({
   ImagesContainer: {
-    width: wp(100),
-    minHeight: 3,
     flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
+    gap: 8,
+    paddingHorizontal: 16,
   },
 });

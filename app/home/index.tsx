@@ -1,9 +1,11 @@
+import { apicall } from "@/api";
 import Categories from "@/components/Categories/Categories";
+import ImageGrid from "@/components/ImageGrid/ImageGrid";
 import { theme } from "@/constants/theme";
 import { hp, wp } from "@/helpers/common";
 import { Feather, FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Pressable,
   ScrollView,
@@ -17,9 +19,33 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const HomeScreen = () => {
   const { top } = useSafeAreaInsets();
   const [search, setSearch] = React.useState<string>("");
+  const [images, setImages] = React.useState<any[]>([]);
   const searchInputref = useRef(null);
 
   const paddingTop = top > 0 ? top + 10 : 30;
+  const [activeCategory, setActiveCategory] = React.useState<string | null>(
+    null
+  );
+
+  const handleChangeCategory = (cat: string) => {
+    setActiveCategory(cat);
+  };
+
+  const fetchImages = async (
+    params: object = { page: 1 },
+    append: boolean = true
+  ): Promise<void> => {
+    let res = await apicall(params);
+    if (res?.status == 200 && res?.data?.hits) {
+      setImages((pev: any[]) => {
+        return append ? [...pev, ...res.data.hits] : res.data.hits;
+      });
+    }
+  };
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
   return (
     <View style={(style.container, { paddingTop })}>
       <StatusBar style="dark" />
@@ -67,7 +93,16 @@ const HomeScreen = () => {
           )}
         </View>
         <View style={style.categories}>
-          <Categories />
+          <Categories
+            activeCategory={activeCategory}
+            handleChangeCategory={handleChangeCategory}
+          />
+        </View>
+
+        {/* Images */}
+
+        <View>
+          {images && images.length > 0 && <ImageGrid images={images} />}
         </View>
       </ScrollView>
     </View>

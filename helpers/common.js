@@ -9,3 +9,13 @@ export const hp = percentage => {
     const height = deviceHeight;
     return (percentage * height) / 100;
 };
+
+export const getColumnCount = () => {
+    if (deviceWidth > 1024) {
+        return 4; //pc
+    }
+    if (deviceWidth > 768) {
+        return 3; //Tablet
+    }
+    return 2; //mobile
+};

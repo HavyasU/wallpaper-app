@@ -30,7 +30,7 @@ const WelcomeScreen = () => {
             "white",
           ]}
           style={styles.gradient}
-          start={{ x: 0.3, y: 0 }}
+          start={{ x: 0.5, y: 0 }}
           end={{ x: 0.5, y: 0.8 }}
         />
         <View style={styles.contentContainer}>

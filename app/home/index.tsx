@@ -5,7 +5,7 @@ import { theme } from "@/constants/theme";
 import { hp, wp } from "@/helpers/common";
 import { Feather, FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import {
   Pressable,
   ScrollView,
@@ -50,6 +50,8 @@ const HomeScreen = () => {
     console.log("Search For ", text);
   };
 
+  const handleTextDebounce = useCallback(debounce(handleSearch, 400), []);
+  // https://youtu.be/Feqq9e04svw
   return (
     <View style={(style.container, { paddingTop })}>
       <StatusBar style="dark" />

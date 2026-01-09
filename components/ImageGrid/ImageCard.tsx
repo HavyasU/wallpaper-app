@@ -2,11 +2,16 @@ import { getColumnCount, wp } from "@/helpers/common";
 import React from "react";
 import { Image, Pressable } from "react-native";
 
-const ImageCard = ({ image }: { image: any }) => {
+const ImageCard = ({ image, router }: { image: any; router: any }) => {
   const column = getColumnCount();
   const imageSize = wp(100) / column - 25;
   return (
-    <Pressable onPress={() => {}} style={{ width: imageSize, margin: 3 }}>
+    <Pressable
+      onPress={() => {
+        router.push({ pathname: "home/image", params: { ...image } });
+      }}
+      style={{ width: imageSize, margin: 3 }}
+    >
       <Image
         source={{ uri: image?.webformatURL }}
         style={{

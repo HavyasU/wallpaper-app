@@ -10,6 +10,14 @@ const _layout = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="image"
+        options={{
+          headerShown: false,
+          presentation: "transparentModal",
+          animation: "fade",
+        }}
+      />
       {/* <Stack.Screen
         name="home"
         options={{

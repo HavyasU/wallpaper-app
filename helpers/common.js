@@ -12,7 +12,7 @@ export const hp = percentage => {
 
 export const getColumnCount = () => {
     if (deviceWidth > 1024) {
-        return 4; //pc
+        return 3; //pc
     }
     if (deviceWidth > 768) {
         return 3; //Tablet
